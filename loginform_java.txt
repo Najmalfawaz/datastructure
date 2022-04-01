@@ -1,0 +1,47 @@
+package com.example.loginform;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText txtUsername,txtPassword;
+    Button btnLogin;
+
+    String pgm_username="admin";
+    String pgm_password="admin";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        txtUsername=findViewById(R.id.Userame);
+        txtPassword=findViewById(R.id.Password);
+        btnLogin=findViewById(R.id.Login);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(txtUsername.getText().toString()) || TextUtils.isEmpty(txtPassword.getText().toString()))
+                {
+                    Toast.makeText(MainActivity.this, "Username or passoword is empty", Toast.LENGTH_LONG).show();
+                }else if(txtUsername.getText().toString().equals(pgm_username)){
+                    if(txtPassword.getText().toString().equals(pgm_password)){
+                        Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(MainActivity.this, "Username or password is incorrect", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+    }
+}
